@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Not Found";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Found</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .not-found-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: #343a40;
+        }
+
+        .not-found-card {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .not-found-title {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .not-found-message {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="not-found-container">
+        <div class="not-found-card">
+            <h1 class="not-found-title">404</h1>
+            <p class="not-found-message">Oops! The page you're looking for doesn't exist.</p>
+            <a href="@Url.Action("Index", "Employee")" class="btn btn-primary">Go to Employee list</a>
+        </div>
+    </div>
+
+</body>
+</html>

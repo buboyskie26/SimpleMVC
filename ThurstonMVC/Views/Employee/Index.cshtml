@@ -1,0 +1,120 @@
+﻿@* @model IEnumerable<ThurstonMVC.Models.Entities.Employee> *@
+@model ThurstonMVC.Models.ViewModel.IndexEmployeeViewModel;
+
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h2 class="text-center mb-3">Employees</h2>
+
+<div class="mb-3 d-flex justify-content-between align-items-center">
+    <a asp-action="Create" asp-controller="Employee" class="btn btn-success">⊕ Add Employee</a>
+
+    <form asp-action="Index" method="GET" class="form-inline">
+        <div class="input-group">
+            <input autocomplete="off" type="text" name="searchString" class="form-control" placeholder="Search employees..." value="@ViewData["CurrentFilter"]" />
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+    
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead style="background-color:#808080; color:whitesmoke" class="text-center">
+            <tr>
+                <th>#</th>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Date of Birth</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Employee.Any())
+            {
+                var i = 1;
+                @foreach (var employee in Model.Employee)
+                {
+                    <tr class="text-center">
+                        <td>@i</td>
+                        <td>@employee.Id</td>
+                        <td>@employee.FirstName</td>
+                        <td>@employee.LastName</td>
+                        <td>@employee.Email</td>
+                        <td>@employee.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-primary">Update</a>
+                            <button class="btn btn-outline-danger delete-btn" data-id="@employee.Id">Remove</button>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No data found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (Model.Employee.Any() && Model.SearchQuery != null)
+{
+    <div class="alert alert-info mt-3">
+        We got @Model.Employee.Count() results of the search of '@Model.SearchQuery'
+    </div>
+}
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.delete-btn').click(function () {
+                var deleteButton = $(this); // Store the reference to the clicked button
+                var employeeId = deleteButton.data('id');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/Employee/Delete/' + employeeId,
+                            type: 'DELETE',
+                            success: function () {
+                                // Remove the row from the employee table
+                                deleteButton.closest('tr').remove();
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Selected user has been deleted.',
+                                    'success'
+                                );
+                            },
+                            error: function () {
+                                Swal.fire(
+                                    'Error!',
+                                    'An error occurred while deleting the employee.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

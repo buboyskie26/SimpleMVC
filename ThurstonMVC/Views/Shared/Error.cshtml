@@ -1,0 +1,106 @@
+﻿@* @{
+    ViewData["Title"] = "Error";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .error-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: #343a40;
+        }
+        .error-card {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .error-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #dc3545;
+        }
+        .error-message {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="error-container">
+    <div class="error-card">
+        <h1 class="error-title">Error</h1>
+        <p class="error-message">An unexpected error has occurred. Please try again later.</p>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Go to Homepage</a>
+    </div>
+</div>
+
+</body>
+</html>
+ *@
+
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .error-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: #343a40;
+        }
+
+        .error-card {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #dc3545;
+        }
+
+        .error-message {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <div class="error-card">
+            <h1 class="error-title">Error</h1>
+            <p class="error-message">An unexpected error has occurred. Please try again later.</p>
+            <a href="@Url.Action("Index", "Employee")" class="btn btn-primary">Go to Employee list</a>
+        </div>
+    </div>
+
+</body>
+</html>
